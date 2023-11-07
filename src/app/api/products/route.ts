@@ -37,7 +37,9 @@ async function getProducts(params: Record<string, any>) {
       [Modules.PRICING]: true,
     },
     sharedResourcesConfig: {
-      database: { clientUrl: process.env.POSTGRES_URL },
+      database: { clientUrl: process.env.POSTGRES_URL, 
+      pool: { max: 1 },
+      driverOptions: JSON.parse(process.env.POSTGRES_DRIVER_OPTIONS || '{}') },
     },
   })
 
